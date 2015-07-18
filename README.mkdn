@@ -10,65 +10,34 @@ familiar with [Git and Repo](http://source.android.com/source/developing.html).
 
 To initialize your local repository using the CyanogenMod trees, use a command like this:
 
-    repo init -u git://github.com/androidarmv6/android.git -b cm-11.0
+< obsoleted:   repo init -u git://github.com/androidarmv6/android.git -b cm-11.0 >
+RIP androidarmv6, you were the greatest. Thanks for all the work.
 
-Then to sync up:
+Building android from source code
 
-    repo sync
-    sh vendor/cm/get-prebuilts
+$ mkdir WORKING_DIR
+$ cd WORKING_DIR
+$ repo init -u git://github.com/bigsuperstuff/android.git -b cm-11.0
+$ repo sync
+$ sh vendor/cm/get-prebuilts
+$ source build/envsetup.sh
+$ lunch
+$ 
+$time mka bacon
 
-Build your device:
+(mka instead of make -j* will supposedly optimize the number of threads based on your cpu, and then time will display total time when it finishes your build.)
+wait.
 
-    source build/envsetup.sh
-    brunch DEVICENAME (for ex: brunch cooper)
-
-Flash ZIP:
-
-    out/target/product/DEVICENAME/cm-VERSION-DEVICENAME.zip
-
-
-Please see the [CyanogenMod Wiki](http://wiki.cyanogenmod.org/) for building instructions.
-
-
-Gerrit Code Review
-------------------
-
-We have a gerrit instance at http://review.androidarmv6.org.
-Please don't try to push directly to github.
-Ask an owner for forking stuff for gerrit.
-We will be happy to oblige.
-
-Gerrit Setup (yes double review.review, change GERRITUSERNAME with your username)
-
-    git config --global review.review.androidarmv6.org.username GERRITUSERNAME
-
-Uploading Patches
-
-    cd WORKING_DIR
-    source build/envsetup.sh
-    cd PROJECT_DIR
-    repo start cm-11.0 .
-    ... make changes ...
-    git add .
-    git commit -m "Commit message"
-    repo upload .
-    repo abandon cm-11.0 .
+$ adb push out/target/product/DEVICENAME/cm-VERSION-DEVICENAME.zip /mnt/sdcard/
 
 
-
-Contact
--------
-
-For more information on this Github Organization and how it is structured, 
-please go to [http://androidarmv6.github.io/](http://androidarmv6.github.io/)
-
-Join us on #droidarmv6 (temporarily) or usually #androidarmv6 (usually - don't join this channel now) for help and support or just for a chat!
+Please see the [CyanogenMod Wiki](http://wiki.cyanogenmod.org/) for any more building instructions.
 
 Disclaimer
 --------
 
 All of these device are not supported by CyanogenMod since they use the old Qualcomm
-Snapdragon MSM7x27 chip, and hence cut off by the CyanogenMod team. This team (androidarmv6)
+Snapdragon MSM7x27 chip, and hence cut off by the CyanogenMod team. This team (bigsuperstuff)
 is in no way, shape or form affiliated by the CyanogenMod team and this project is not
 endorsed or supported by the CyanogenMod team.
 
